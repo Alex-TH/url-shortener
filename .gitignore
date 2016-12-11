@@ -1,0 +1,8 @@
+# swap
+*.swp
+*.swo
+*~
+# session
+Session.vim
+node_modules
+.DS_STORE

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link href="/node_modules/materialize-css/dist/css/materialize.min.css" rel="stylesheet" media="screen" type="text/css">
+    <title>URL Shortener | Form</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta property="og:title" content="CityDrive | Admin">
+
+    <meta name="description" content="URL Shortener">
+    <meta property="og:description" content="URL Shortner">
+
+    <link rel="canonical" href="">
+    <meta property="og:url" content="">
+
+    <meta property="og:image" content="">
+  </head>
+  <body>
+    <h1>URL Shortener</h1>
+    <input id="url" type="text" />
+    <label for="url">URL to short</label>
+    <input id="btnShort" type="button" value="Short URL"><br/>
+    <div>
+      <ul id="result"></ul>
+    </div>
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/materialize-css/dist/js/materialize.min.js"></script>
+    <script>
+      const result = document.getElementById('result');
+      document.getElementById('btnShort').onclick = (e) => {
+        console.log('oie zhy');
+        fetch('url/shortUrl', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            url: document.getElementById('url').value,
+          }),
+        })
+        .then(res => res.json())
+        .then((res) => {
+          const li = document.createElement('li');
+          li.textContent = `localhost:3000/${res.shortUrl} = ${res.url}`;
+          result.appendChild(li);
+        });
+      };
+    </script>
+  </body>
+</html>
