@@ -1,27 +1,32 @@
 const shortener = require('./shortener');
-function urlAPI() {
-  const urls = {};
-  const shortUrls = {};
 
-  const shortUrl = (req, res) => {
-    const params = req.body;
-    let result = shortener.shortify(params.url);
-    if (urls[result.url] === undefined) {
-      while(shortUrls[result.shortUrl] !== undefined) result = shortener.shortify(params.url);
-      urls[result.url] = result.shortUrl;
-      shortUrls[result.shortUrl] = result.url;
-    } else {
-      result.shortUrl = urls[result.url];
-    }
-    res.json(result);
-  };
+function urlAPI(urlInteractor) {
+  const shortUrl = (req, res) =>
+    urlInteractor.shortUrl(req.body.url)
+    .then(result => {
+      res.json(result);
+    })
+    .catch((err) => res.json({
+      success: false,
+      error: err,
+    }));
 
-  const getLongUrl = (shortUrl) => shortUrls[shortUrl];
+  const getLongUrl = (req, res) => {
+    urlInteractor.getLongUrl(req.params.shortUrl)
+    .then((url) => {
+      if (url) {
+        res.redirect(301, url);  
+      } else {
+        throw 'Not found';
+      }
+    })
+    .catch(() => res.send('<h1>NOT FOUND</h1>'));
+  }
 
   const getUrls = (req, res) => {
-    const urlsArray = [];
-    Object.keys(urls).forEach((url) => urlsArray.push(`localhost:3000/${urls[url]} = ${url}`));
-    res.json(urlsArray);
+    urlInteractor.getUrls()
+    .then(urls => urls.map(url => `localhost:3000/${url.shortUrl} = ${url.url}`))
+    .then(urls => res.json(urls));
   };
 
   return {
@@ -35,4 +40,4 @@ function urlAPI() {
   };
 }
 
-module.exports = urlAPI();
+module.exports = urlAPI;
