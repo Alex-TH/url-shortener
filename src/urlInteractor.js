@@ -18,10 +18,9 @@ function UrlInteractor(store) {
       if (!urlObj) {
         return validateShort(result)
         .then(urlObj => store.insertUrl(urlObj))
-        .then(result => result.ops[0]);
       }
       return urlObj;
-    })
+    });
   };
 
   const getLongUrl = (shortUrl) =>

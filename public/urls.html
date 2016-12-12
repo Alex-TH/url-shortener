@@ -4,10 +4,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-    <link href="/node_modules/materialize-css/dist/css/materialize.min.css" rel="stylesheet" media="screen" type="text/css">
     <title>URL Shortener | Urls</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <meta property="og:title" content="CityDrive | Admin">
+    <link href="styles/main.css" rel="stylesheet">
+    <meta property="og:title" content="URL Shortener | Urls">
 
     <meta name="description" content="URL Shortener">
     <meta property="og:description" content="URL Shortner">
@@ -18,21 +18,12 @@
     <meta property="og:image" content="">
   </head>
   <body>
-    <h1>URL List</h1>
-    <ul id="result"></ul>
-    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="/node_modules/materialize-css/dist/js/materialize.min.js"></script>
-    <script>
-      const result = document.getElementById('result');
-      fetch('url/getUrls')
-      .then(res => res.json())
-      .then((res) => {
-        res.forEach((url) => {
-          const li = document.createElement('li');
-          li.textContent = url;
-          result.appendChild(li);
-        });
-      });
-    </script>
+    <div class="content">
+      <h1>URL List</h1>
+      <div class="url-list">
+        <ul id="result"></ul>
+      </div>
+    </div>
+    <script src="js/urls.js"></script>
   </body>
 </html>

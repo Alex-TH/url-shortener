@@ -1,0 +1,81 @@
+html {
+  box-sizing: border-box;
+}
+
+body {
+  background: url('../images/background.png');
+  font-family: 'Lato';
+  font-size: 17px;
+  color: #2C3E50;
+  overflow: hidden;
+}
+
+.content {
+  background-color: rgba(253, 227, 167, .95);
+  border-radius: 7px;
+  text-align: center;
+  padding: 3em 0;
+  margin: 30px;
+  height: calc(80vh - 30px);
+  overflow: scroll;
+}
+
+.urls {
+  background-color: rgba(255, 255, 244, .75);
+  border-radius: 7px;
+  width: 650px;
+  margin: 15px auto;
+  padding: 1em 0;
+  min-height: 150px;
+  overflow: scroll;
+}
+.url-list {
+  margin: 0 20vw;
+}
+li {
+  text-align: left;
+}
+
+h1 {
+  font-size: 4em;
+}
+
+input.url {
+  font-size: 25px;
+  width: 400px;
+  padding: 0.4em;
+  background-color: rgba(255, 255, 244, .75);
+  border: 1px solid #ccc;
+}
+
+#btnShort {
+  background-color: #22313F;
+  color: #FFF;
+  margin: 15px;
+  font-size: 20px;
+  padding: 0.4em 0.8em;
+  border-radius: 2px;
+  border: none;
+}
+::selection {
+  background: #FFF;
+}
+::moz-selection {
+  background: #FFF;
+}
+@media screen and (max-width: 730px) {
+  .urls {
+    margin: 0;
+    width: 100%;
+  }
+}
+@media screen and (max-width: 540px) {
+  .content,
+  .url-list {
+    margin: 0;
+  }
+  input.url {
+    width:300px;
+  }
+}
+

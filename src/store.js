@@ -1,8 +1,6 @@
-const MongoClient = require('mongodb').MongoClient;
-
-function storeDB(config) {
+function storeDB(db) {
   const store = {};
-  let DB;
+  let DB = db;
 
   store.getUrlByUrl = (url) => {
     return DB.collection('UrlShorts')
@@ -30,22 +28,11 @@ function storeDB(config) {
 
   store.insertUrl = (urlObj) => {
     return DB.collection('UrlShorts')
-    .insert(urlObj);
+    .insert(urlObj)
+    .then(result => result.ops[0]);
   };
 
-  const initialize = () => {
-    return MongoClient.connect(config.uri)
-    .then((db) => {
-      DB = db
-      return {
-        success: true,
-        msg: 'Db initialized',
-        store: store,
-      };
-    });
-  };
-
-  return initialize();
+  return store;
 }
 
 module.exports = storeDB;

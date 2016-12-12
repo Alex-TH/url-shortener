@@ -1,7 +1,14 @@
 const shortener = require('./shortener');
 
 function urlAPI(urlInteractor) {
-  const shortUrl = (req, res) =>
+  const shortUrl = (req, res) => {
+    if (!req.body.url || req.body.url.trim() === '') {
+      res.json({
+        success: false,
+        error: 'Empty url not allowed',
+      });
+      return;
+    }
     urlInteractor.shortUrl(req.body.url)
     .then(result => {
       res.json(result);
@@ -10,6 +17,7 @@ function urlAPI(urlInteractor) {
       success: false,
       error: err,
     }));
+  };
 
   const getLongUrl = (req, res) => {
     urlInteractor.getLongUrl(req.params.shortUrl)

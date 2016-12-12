@@ -10,24 +10,11 @@ function App(store) {
   const urlInteractor = UrlInteractor(store);
   const urlAPI = UrlAPI(urlInteractor);
 
-  /*store.getUrlByUrl('http://google.com')
-  .then(console.log)
-  .catch(console.log);*/
-  /*store.getUrlByShortUrl('hHwqNE5')
-  .then(console.log)
-  .catch(console.log);*/
-  /*store.insertUrl({
-    url:"http://google.com",
-    shortUrl:"hHwqNE5",
-  })
-  .then(console.log)
-  .catch(err => console.log(`err: ${err}`));*/
-
   app.use(cors());
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(bodyParser.json());
+  app.use(express.static(path.join(__dirname, '../public')));
 
-  // add api urls
   app.post('/url/:function', (req, res) => {
     if (urlAPI.post[req.params.function] !== undefined) {
       urlAPI.post[req.params.function](req, res);
@@ -51,7 +38,7 @@ function App(store) {
   });
 
   app.get('/urls', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public/urls.html'));
+    res.sendFile(path.join(__dirname, '../public/urls.html'));
   });
 
   app.get('/:shortUrl', (req, res) => {
@@ -59,7 +46,7 @@ function App(store) {
   });
 
   app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public/index.html'));
+    res.sendFile(path.join(__dirname, '../public/index.html'));
   });
 
   return app;
