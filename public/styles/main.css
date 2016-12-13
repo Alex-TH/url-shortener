@@ -3,16 +3,15 @@ html {
 }
 
 body {
-  background: url('../images/background.png');
+  background-color: #5CD1A5;
   font-family: 'Lato';
   font-size: 17px;
-  color: #2C3E50;
+  color: #464646;
   overflow: hidden;
 }
 
 .content {
-  background-color: rgba(253, 227, 167, .95);
-  border-radius: 7px;
+  background-color: #FEFEFE;
   text-align: center;
   padding: 3em 0;
   margin: 30px;
@@ -21,8 +20,6 @@ body {
 }
 
 .urls {
-  background-color: rgba(255, 255, 244, .75);
-  border-radius: 7px;
   width: 650px;
   margin: 15px auto;
   padding: 1em 0;
@@ -44,12 +41,11 @@ input.url {
   font-size: 25px;
   width: 400px;
   padding: 0.4em;
-  background-color: rgba(255, 255, 244, .75);
   border: 1px solid #ccc;
 }
 
 #btnShort {
-  background-color: #22313F;
+  background-color: #5CD1A5;
   color: #FFF;
   margin: 15px;
   font-size: 20px;
@@ -58,10 +54,10 @@ input.url {
   border: none;
 }
 ::selection {
-  background: #FFF;
+  background: #C7EBDD;
 }
 ::moz-selection {
-  background: #FFF;
+  background: #C7EBDD;
 }
 @media screen and (max-width: 730px) {
   .urls {
