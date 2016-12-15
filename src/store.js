@@ -1,6 +1,6 @@
 function storeDB(db) {
   const store = {};
-  let DB = db;
+  const DB = db;
 
   store.getUrlByUrl = (url) => {
     return DB.collection('UrlShorts')

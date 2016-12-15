@@ -16,5 +16,12 @@
   "bugs": {
     "url": "https://github.com/Alex-TH/url-shortener/issues"
   },
-  "homepage": "https://github.com/Alex-TH/url-shortener#readme"
+  "homepage": "https://github.com/Alex-TH/url-shortener#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "cors": "^2.8.1",
+    "express": "^4.14.0",
+    "mongodb": "^2.2.16",
+    "node-env-file": "^0.1.8"
+  }
 }
