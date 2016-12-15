@@ -23,6 +23,23 @@ function UrlInteractor(store) {
     });
   };
 
+  const personalizeUrl = ({ url, personalized }) => {
+    const urlResult = shortener.getUrlWithProtocol(url);
+    return store.existShortUrl(personalized)
+    .then(exist => {
+      if (!exist) {
+        return store.insertUrl({
+          url: urlResult,
+          shortUrl: personalized,
+        });
+      }
+      return {
+        success: false,
+        message: 'Url personalized alredy taken!',
+      }
+    });
+  };
+
   const getLongUrl = (shortUrl) =>
     store.getUrlByShortUrl(shortUrl)
     .then(urlObj => urlObj ? urlObj.url : undefined);
@@ -33,6 +50,7 @@ function UrlInteractor(store) {
     shortUrl,
     getLongUrl,
     getUrls,
+    personalizeUrl,
   };
 }
 

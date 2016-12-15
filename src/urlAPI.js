@@ -19,6 +19,23 @@ function urlAPI(urlInteractor) {
     }));
   };
 
+  const personalizeUrl = (req, res) => {
+    const body = req.body;
+    if (!body.url || body.url.trim() === '' || !body.personalized || body.personalized.trim === '') {
+      res.json({
+        success: false,
+        error: 'Empty url not allowed',
+      });
+      return;
+    }
+    urlInteractor.personalizeUrl(body)
+    .then(result => res.json(result))
+    .catch(err => res.json({
+      success: false,
+      error: err,
+    }));
+  };
+
   const getLongUrl = (req, res) => {
     urlInteractor.getLongUrl(req.params.shortUrl)
     .then((url) => {
@@ -40,6 +57,7 @@ function urlAPI(urlInteractor) {
   return {
     post: {
       shortUrl,
+      personalizeUrl,
     },
     get: {
       getUrls,

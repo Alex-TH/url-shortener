@@ -16,17 +16,24 @@ function shortener() {
     return !!match ? match[1] : '';
   };
 
-  const shortify = (url) => {
+  const getUrlWithProtocol = (url) => {
     if (getUrlProtocol(url) === '') {
       url = `http://${url}`;
     }
+    return url;
+  };
+
+  const shortify = (url) => {
     return { 
-      url,
+      url: getUrlWithProtocol(url),
       shortUrl: randomStr(RANDOM_LENGTH),
     }
   };
 
-  return { shortify };
+  return { 
+    shortify,
+    getUrlWithProtocol,
+  };
 }
 
 module.exports = shortener();
