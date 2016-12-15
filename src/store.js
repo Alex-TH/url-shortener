@@ -32,6 +32,14 @@ function storeDB(db) {
     .then(result => result.ops[0]);
   };
 
+  store.updateUrlMetrics = (shortUrl) => {
+    return DB.collection('UrlShorts')
+    .updateOne({ shortUrl }, { 
+      $inc: { "metrics.visited": 1 },
+      $currentDate: { "metrics.lastVisited": { $type: "timestamp" }}
+    });
+  };
+
   return store;
 }
 

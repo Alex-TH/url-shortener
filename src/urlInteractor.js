@@ -46,11 +46,14 @@ function UrlInteractor(store) {
 
   const getUrls = () => store.getUrls();
 
+  const updateUrlMetrics = (shortUrl) => store.updateUrlMetrics(shortUrl);
+
   return {
     shortUrl,
     getLongUrl,
     getUrls,
     personalizeUrl,
+    updateUrlMetrics,
   };
 }
 
