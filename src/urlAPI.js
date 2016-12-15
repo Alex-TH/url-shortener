@@ -41,8 +41,7 @@ function urlAPI(urlInteractor) {
     urlInteractor.getLongUrl(shortUrl)
     .then((url) => {
       if (url) {
-        console.log(shortUrl)
-        res.redirect(301, url);
+        res.redirect(302, url);
         urlInteractor.updateUrlMetrics(shortUrl)
       } else {
         throw 'Not found';
@@ -56,6 +55,8 @@ function urlAPI(urlInteractor) {
     .then(urls => urls.map(url => `localhost:3000/${url.shortUrl} = ${url.url} visited ${url.metrics ? url.metrics.visited : 0} times`))
     .then(urls => res.json(urls));
   };
+
+  // console.log(shortener.increaseRandomLength());
 
   return {
     post: {

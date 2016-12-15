@@ -7,6 +7,7 @@ function UrlInteractor(store) {
       if (!exist) {
         return urlObj;  
       }
+      shortener.increaseRandomLength();
       return validateShort(shortener.shortify(urlObj.url));
     });
   };

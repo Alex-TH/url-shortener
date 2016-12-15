@@ -1,6 +1,7 @@
+const fs = require('fs');
 function shortener() {
-  const RANDOM_LENGTH = 7;
   const characters = 'abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+  let RANDOM_LENGTH = parseInt(fs.readFileSync('randomLength.txt', 'utf8'));
 
   const randomStr = (length) => {
     const strArr = [];
@@ -30,9 +31,15 @@ function shortener() {
     }
   };
 
+  const increaseRandomLength = () => {
+    RANDOM_LENGTH += 1;
+    return fs.writeFileSync('randomLength.txt', RANDOM_LENGTH, 'utf8')
+  };
+
   return { 
     shortify,
     getUrlWithProtocol,
+    increaseRandomLength,
   };
 }
 
